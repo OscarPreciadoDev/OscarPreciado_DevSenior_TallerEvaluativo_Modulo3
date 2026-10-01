@@ -24,6 +24,9 @@ public class Propietario {
     // Teléfono del propietario
     private String telefono;
 
+    // Email del propietario
+    private String email;
+
     //  Lista de mascotas del propietario, un propietario puede tener muchas mascotas, por eso se utiliza @OneToMany y se establece la relación con la clase Mascota
     @OneToMany(mappedBy = "propietario")
     private List<Mascota> mascotas = new ArrayList<>();
@@ -33,9 +36,10 @@ public class Propietario {
 
     // Constructor completo con todos los campos
 
-    public Propietario(String nombre, String telefono) {
+    public Propietario(String nombre, String telefono, String email) {
         this.nombre = nombre;
         this.telefono = telefono;
+        this.email = email;
     }
 
     // Getters & Setters de todos los campos
@@ -70,5 +74,13 @@ public class Propietario {
 
     public void setMascotas(List<Mascota> mascotas) {
         this.mascotas = mascotas;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
