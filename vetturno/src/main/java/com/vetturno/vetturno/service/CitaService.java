@@ -1,15 +1,15 @@
 package com.vetturno.vetturno.service;
 
 import com.vetturno.vetturno.model.Cita;
-import com.vetturno.vetturno.model.Mascota;
-import com.vetturno.vetturno.model.Propietario;
-import com.vetturno.vetturno.model.Veterinario;
 import com.vetturno.vetturno.repository.CitaRepository;
 import com.vetturno.vetturno.repository.MascotaRepository;
 import com.vetturno.vetturno.repository.VeterinarioRepository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+@Service
 public class CitaService {
 
     private final CitaRepository citaRepository;
@@ -23,46 +23,38 @@ public class CitaService {
     }
 
     // Metodo para guardar una cita
-
     public Cita crearCita(Cita cita) {
-
-        resolverMascota(cita);
-        resolverVeterinario(cita);
+        validarMascota(cita);
+        validarVeterinario(cita);
         resolverHora(cita);
         resolverVeterinarioLibre(cita);
-
 
         return citaRepository.save(cita);
     }
 
-    // Resolver mascota
-    public void resolverMascota(Cita cita) {
+    public List<Cita> listarCitas() {
+        return citaRepository.findAll();
+    }
 
-        // Verifica que la mascota no sea nula en la entrada
-        if (cita.getMascota() != null) {
+    public List<Cita> listarCitasPorVeterinario(Long veterinarioId) {
+        return citaRepository.findByVeterinarioId(veterinarioId);
+    }
 
-            // Busca a la mascota en la BD por su id
-            Mascota mascota = mascotaRepository
-                    .findById(cita.getMascota().getId())
-                    .orElseThrow(() ->
-                            new RuntimeException("Mascota no encontrada"));  // Si no se encuentra, lanza una excepción
-            cita.setMascota(mascota);                                        // Si se encuentra, establece la mascota en la cita
+    private void validarMascota(Cita cita) {
+        if (cita.getMascotaId() == null
+                || !mascotaRepository.existsById(cita.getMascotaId())) {
+            throw new RuntimeException("Mascota no encontrada");
         }
     }
 
-    // Resolver veterinario
-    public void resolverVeterinario(Cita cita) {
-        if (cita.getVeterinario() != null) {
-            Veterinario veterinario = veterinarioRepository
-                    .findById(cita.getVeterinario().getId())
-                    .orElseThrow(() ->
-                            new RuntimeException("Veterinario no encontrado"));
-            cita.setVeterinario(veterinario);
+    private void validarVeterinario(Cita cita) {
+        if (cita.getVeterinarioId() == null
+                || !veterinarioRepository.existsById(cita.getVeterinarioId())) {
+            throw new RuntimeException("Veterinario no encontrado");
         }
     }
 
-    // Resolver hora
-    public void resolverHora(Cita cita) {
+    private void resolverHora(Cita cita) {
         if (cita.getFechaHora() == null) {
             throw new RuntimeException("La hora de la cita no puede ser nula");
         } else if (cita.getFechaHora().isBefore(LocalDateTime.now())) {
@@ -70,12 +62,9 @@ public class CitaService {
         }
     }
 
-    // Resolver veterinario libre
-    public void resolverVeterinarioLibre(Cita cita) {
-
-        // Implementar lógica para verificar si el veterinario está libre en la hora solicitada
+    private void resolverVeterinarioLibre(Cita cita) {
         if (citaRepository.existsByVeterinarioIdAndFechaHora(
-                cita.getVeterinario().getId(),
+                cita.getVeterinarioId(),
                 cita.getFechaHora())) {
 
             throw new RuntimeException(
@@ -84,4 +73,3 @@ public class CitaService {
         }
     }
 }
-

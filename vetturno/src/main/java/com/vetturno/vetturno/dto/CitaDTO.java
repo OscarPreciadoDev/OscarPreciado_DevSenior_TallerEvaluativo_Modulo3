@@ -6,16 +6,11 @@ import java.time.LocalDateTime;
 
 public class CitaDTO {
 
-    // La salida muestra la cita de manera plana datos comprensibles de la mascota, su responsable y el veterinario
-    // id, fechaHora, motivo, mascota, propietario, veterinario
-
     private Long id;
     private LocalDateTime fechaHora;
     private String motivo;
     private Long mascotaId;
-    private String mascotaNombre;
-    private String propietarioNombre;
-    private Long VeterinarioId;
+    private Long veterinarioId;
 
     public CitaDTO() {}
 
@@ -24,9 +19,27 @@ public class CitaDTO {
         this.id = cita.getId();
         this.fechaHora = cita.getFechaHora();
         this.motivo = cita.getMotivo();
-        this.mascotaId = cita.getMascota().getId();
-        this.mascotaNombre = cita.getMascota().getNombre();
-        this.propietarioNombre =  cita.getMascota().getPropietario().getNombre();
-        this.VeterinarioId =  cita.getVeterinario().getId();
+        this.mascotaId = cita.getMascotaId();
+        this.veterinarioId = cita.getVeterinarioId();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public Long getMascotaId() {
+        return mascotaId;
+    }
+
+    public Long getVeterinarioId() {
+        return veterinarioId;
     }
 }

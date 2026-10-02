@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-
 // Esta clase representa una entidad, y una tabla en la base de datos, por eso se relaciona con @Entity y @Table
 @Entity
 @Table(name = "citas")
@@ -26,25 +25,21 @@ public class Cita {
     // Motivo de la cita
     private String motivo;
 
-    // Una cita tiene una mascota únicamente por eso se utiliza @ManyToOne y se establece la relación con la clase Mascota
-    @ManyToOne
-    @JoinColumn(name = "mascota_id")
-    private Mascota mascota;
+    @Column(name = "mascota_id")
+    private Long mascotaId;
 
-    // Una cita tiene un solo especialista, por eso se utiliza @ManyToOne y se establece la relación con la clase Veterinario
-    @ManyToOne
-    @JoinColumn(name = "veterinario_id")
-    private Veterinario veterinario;
+    @Column(name = "veterinario_id")
+    private Long veterinarioId;
 
     // Constructor vacio solicitado por Spring
     public Cita() {}
 
     // Constructor con todos los campos
-    public Cita(LocalDateTime fechaHora, String motivo, Mascota mascota, Veterinario veterinario) {
+    public Cita(LocalDateTime fechaHora, String motivo, Long mascotaId, Long veterinarioId) {
         this.fechaHora = fechaHora;
         this.motivo = motivo;
-        this.mascota = mascota;
-        this.veterinario = veterinario;
+        this.mascotaId = mascotaId;
+        this.veterinarioId = veterinarioId;
     }
 
     // Getters & Setters de todos los campos
@@ -73,19 +68,19 @@ public class Cita {
         this.motivo = motivo;
     }
 
-    public Mascota getMascota() {
-        return mascota;
+    public Long getMascotaId() {
+        return mascotaId;
     }
 
-    public void setMascota(Mascota mascota) {
-        this.mascota = mascota;
+    public void setMascotaId(Long mascotaId) {
+        this.mascotaId = mascotaId;
     }
 
-    public Veterinario getVeterinario() {
-        return veterinario;
+    public Long getVeterinarioId() {
+        return veterinarioId;
     }
 
-    public void setVeterinario(Veterinario veterinario) {
-        this.veterinario = veterinario;
+    public void setVeterinarioId(Long veterinarioId) {
+        this.veterinarioId = veterinarioId;
     }
 }

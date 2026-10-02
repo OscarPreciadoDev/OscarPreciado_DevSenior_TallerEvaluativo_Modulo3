@@ -4,13 +4,10 @@ import java.time.LocalDateTime;
 
 public class CitaRequest {
 
-    // La entrada recibe
-    // fechaHora, motivo, mascotaId, VeterinarioId
-
     private LocalDateTime fechaHora;
     private String motivo;
     private Long mascotaId;
-    private Long VeterinarioId;
+    private Long veterinarioId;
 
     public CitaRequest() {}
 
@@ -18,7 +15,7 @@ public class CitaRequest {
         this.fechaHora = fechaHora;
         this.motivo = motivo;
         this.mascotaId = mascotaId;
-        VeterinarioId = veterinarioId;
+        this.veterinarioId = veterinarioId;
     }
 
     public LocalDateTime getFechaHora() {
@@ -46,10 +43,10 @@ public class CitaRequest {
     }
 
     public Long getVeterinarioId() {
-        return VeterinarioId;
+        return veterinarioId;
     }
 
     public void setVeterinarioId(Long veterinarioId) {
-        VeterinarioId = veterinarioId;
+        this.veterinarioId = veterinarioId;
     }
 }
