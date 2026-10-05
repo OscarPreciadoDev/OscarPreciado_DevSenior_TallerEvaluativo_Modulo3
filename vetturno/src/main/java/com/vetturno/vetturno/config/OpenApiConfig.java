@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @OpenAPIDefinition(
         info = @Info(
-                title = "API Gestor de Productos",
+                title = "VetTurno",
                 version = "1.0",
-                description = "API REST del catálogo de la tienda, con seguridad JWT."
+                description = "Veterinaria Huellitas."
         ),
         security = @SecurityRequirement(name = "bearerAuth")
 )

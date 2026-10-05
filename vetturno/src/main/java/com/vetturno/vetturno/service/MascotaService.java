@@ -1,5 +1,6 @@
 package com.vetturno.vetturno.service;
 
+import com.vetturno.vetturno.exception.BusinessException;
 import com.vetturno.vetturno.model.Mascota;
 import com.vetturno.vetturno.model.Propietario;
 import com.vetturno.vetturno.repository.MascotaRepository;
@@ -44,7 +45,7 @@ public class MascotaService {
             Propietario propietario = propietarioRepository
                     .findById(mascota.getPropietario().getId())
                     .orElseThrow(() ->
-                        new RuntimeException("Propietario no encontrado"));
+                        new BusinessException("Propietario no encontrado"));
             // Asigna el propietario encontrado a la mascota
             mascota.setPropietario(propietario);
         }
