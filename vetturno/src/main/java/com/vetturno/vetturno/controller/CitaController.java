@@ -4,6 +4,7 @@ import com.vetturno.vetturno.dto.CitaDTO;
 import com.vetturno.vetturno.dto.CitaRequest;
 import com.vetturno.vetturno.model.Cita;
 import com.vetturno.vetturno.service.CitaService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class CitaController {
     }
 
     @PostMapping("/agendar")
-    public ResponseEntity<CitaDTO> agendarCita(@RequestBody CitaRequest request) {
+    public ResponseEntity<CitaDTO> agendarCita(@Valid @RequestBody CitaRequest request) {
         Cita cita = new Cita(
                 request.getFechaHora(),
                 request.getMotivo(),

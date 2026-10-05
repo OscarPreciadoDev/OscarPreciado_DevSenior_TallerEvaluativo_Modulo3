@@ -1,5 +1,6 @@
 package com.vetturno.vetturno.service;
 
+import com.vetturno.vetturno.exception.BusinessException;
 import com.vetturno.vetturno.model.Cita;
 import com.vetturno.vetturno.repository.CitaRepository;
 import com.vetturno.vetturno.repository.MascotaRepository;
@@ -67,7 +68,8 @@ public class CitaService {
                 cita.getVeterinarioId(),
                 cita.getFechaHora())) {
 
-            throw new RuntimeException(
+            // Arroja una excepcion controlada
+            throw new BusinessException(
                     "El veterinario ya tiene una cita en esa fecha y hora"
             );
         }

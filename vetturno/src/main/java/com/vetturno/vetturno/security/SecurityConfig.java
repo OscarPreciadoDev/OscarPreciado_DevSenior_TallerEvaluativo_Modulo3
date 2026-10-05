@@ -32,6 +32,9 @@ public class SecurityConfig {
                         // Deja públicos únicamente Registro y Login ("api/auth/")
                         .requestMatchers("/api/auth/**").permitAll()
 
+                        // Permite el acceso a swagger
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/v3/api-docs").permitAll()
+
                         // Permite el trabajo de recepción a USER y ADMIN
                         .requestMatchers
                                 ( "/api/citas/**",

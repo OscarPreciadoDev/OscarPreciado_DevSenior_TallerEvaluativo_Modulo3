@@ -4,6 +4,7 @@ import com.vetturno.vetturno.dto.PropietarioDTO;
 import com.vetturno.vetturno.dto.PropietarioRequest;
 import com.vetturno.vetturno.model.Propietario;
 import com.vetturno.vetturno.service.PropietarioService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +42,7 @@ public class PropietarioController {
 
     // Endpoint para crear un nuevo propietario
     @PostMapping("/crear")
-    public ResponseEntity<PropietarioDTO> crearPropietario(@RequestBody PropietarioRequest request) {
+    public ResponseEntity<PropietarioDTO> crearPropietario(@Valid @RequestBody PropietarioRequest request) {
 
         // Crea un nuevo objeto Propietario a partir de los datos del request
         Propietario propietario = new Propietario();

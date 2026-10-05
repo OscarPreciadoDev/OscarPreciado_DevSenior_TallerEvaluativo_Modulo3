@@ -1,8 +1,15 @@
 package com.vetturno.vetturno.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class VeterinarioRequest {
 
+    // Nombre obligatorio
+    @NotBlank(message = "El nombre no puede ir vacío")
     private String nombre;
+
+    // Especialidad obligatoria
+    @NotBlank(message = "La especialidad no puede ir vacía")
     private String especialidad;
 
     public VeterinarioRequest() {}

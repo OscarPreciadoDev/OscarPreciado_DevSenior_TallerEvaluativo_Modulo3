@@ -1,10 +1,23 @@
 package com.vetturno.vetturno.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class MascotaRequest {
 
+    // Nombre obligatorio
+    @NotBlank(message = "El nombre no puede ir vacío")
     private String nombre;
+
+    // Especie obligatoria
+    @NotBlank(message = "La especie no puede ir vacía")
     private String especie;
+
+    // No declara raza obligatoria
     private String raza;
+
+    // Propietario obligatorio
+    @NotNull(message = "El Id del propietario no puede ir vacío" )
     private Long propietarioId;
 
     public MascotaRequest() {}

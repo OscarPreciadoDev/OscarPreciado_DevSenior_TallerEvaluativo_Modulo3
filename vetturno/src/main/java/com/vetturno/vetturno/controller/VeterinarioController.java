@@ -5,6 +5,7 @@ import com.vetturno.vetturno.dto.VeterinarioDTO;
 import com.vetturno.vetturno.dto.VeterinarioRequest;
 import com.vetturno.vetturno.model.Veterinario;
 import com.vetturno.vetturno.service.VeterinarioService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class VeterinarioController {
 
     // POST PARA CREAR UN NUEVO VETERINARIO
     @PostMapping("/crear")
-    public ResponseEntity<VeterinarioDTO> crearVeterinario(@RequestBody VeterinarioRequest request) {       // Mapea un metodo a peticiones HTTP POST.
+    public ResponseEntity<VeterinarioDTO> crearVeterinario(@Valid @RequestBody VeterinarioRequest request) {       // Mapea un metodo a peticiones HTTP POST.
 
         // Crea un nuevo objeto Veterinario
         Veterinario veterinario = new Veterinario();

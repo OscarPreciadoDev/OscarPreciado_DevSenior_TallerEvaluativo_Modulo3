@@ -18,6 +18,7 @@ public class RegistroRequest {
 
 
     // getters y setters
+
     public @NotBlank(message = "El correo es obligatorio") @Email(message = "El correo no tiene un formato válido") String getEmail() {
         return email;
     }

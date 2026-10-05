@@ -1,12 +1,19 @@
 package com.vetturno.vetturno.dto;
 
 import com.vetturno.vetturno.model.Propietario;
+import jakarta.validation.constraints.NotBlank;
 
 public class PropietarioDTO {
 
+
     private Long id;
+
     private String nombre;
+
+
     private String telefono;
+
+
     private String email;
 
     public PropietarioDTO() {}

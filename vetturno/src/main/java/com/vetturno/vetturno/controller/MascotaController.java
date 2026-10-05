@@ -5,6 +5,7 @@ import com.vetturno.vetturno.dto.MascotaRequest;
 import com.vetturno.vetturno.model.Mascota;
 import com.vetturno.vetturno.model.Propietario;
 import com.vetturno.vetturno.service.MascotaService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +41,7 @@ public class MascotaController {
 
     // Metodo para crear una nueva mascota
     @PostMapping("/crear")
-    public ResponseEntity<MascotaDTO> crearMascota(@RequestBody MascotaRequest request) {
+    public ResponseEntity<MascotaDTO> crearMascota(@Valid @RequestBody MascotaRequest request) {
 
         // Crea un objeto Mascota a partir de los datos del request
         Mascota mascota = new Mascota();
